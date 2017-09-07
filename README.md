@@ -2,7 +2,7 @@
 
 Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things. This is to serve as a base modification for custom theming.
 
-constitutional-functions-sample.php - this has all functions I've used up to now. Do NOT remove sample from the file name and use. It is just the dumping ground. 
+sample.php - this has all functions I've used up to now. Do NOT remove sample from the file name and use. It is just the dumping ground. 
 
 constitutional-functions.php - Modify this for use. Copy functions from the sample file for use here. Includes some bare minimums that I use on every project.
 
