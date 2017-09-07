@@ -1,11 +1,4 @@
 <?php
-/**
-* Plugin Name: Constitutional Functions
-* Description: Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things.
-* Author: Josh Wright
-* Version: 0.1
-*/
-
 //Custom logo - Uses header upload
 $defaults = array(
     'default-image'          => '',
