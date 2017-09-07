@@ -26,13 +26,33 @@ add_theme_support( 'custom-header', $defaults );
 //Replicate for additional menus
 
 register_nav_menus( array(
-    'primary' => __( 'Primary Menu', 'THEME_SLUG' ),
+    'primary' => __( 'Primary Menu', 'SITE_SLUG' ),
 ) );
 
 register_nav_menus( array(
-    'mobile' => __( 'Mobile Menu', 'THEME_SLUG' ),
+    'mobile' => __( 'Mobile Menu', 'SITE_SLUG' ),
 ) );
 
+//Add <body> class
+
+/**
+ * Adds classes to the array of body classes.
+ *
+ * @uses body_class() filter
+ */
+function textdomain_body_classes( $classes ) {
+    $classes[] = 'cbp-spmenu-push';
+    return $classes;
+}
+add_filter( 'body_class', 'textdomain_body_classes' );
+
+// Replaces the excerpt "more" text by a link - for use if you want to change the wording
+
+function new_excerpt_more($more) {
+       global $post;
+    return '... <a class="moretag" href="'. get_permalink($post->ID) . '"> More</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 
 //Add the page slug to the <body> class
 function add_slug_body_class( $classes ) {
@@ -43,6 +63,30 @@ function add_slug_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
+
+/*
+* Enable support for Post Thumbnails on posts and pages.
+*
+* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+*/
+add_theme_support( 'post-thumbnails' );
+
+if (class_exists('MultiPostThumbnails')) {
+    new MultiPostThumbnails(
+        array(
+            'label' => 'Main Featured Text',
+            'id' => 'text-image',
+            'post_type' => 'page'
+        )
+    );
+    new MultiPostThumbnails(
+        array(
+            'label' => 'Mobile Featured Text',
+            'id' => 'mobile-image',
+            'post_type' => 'page'
+        )
+    );
+}
 
 //Replicate for additional widget areas
 
@@ -58,6 +102,14 @@ function lkcm4k_widgets_init2() {
     ) );
 }
 add_action( 'widgets_init', 'lkcm4k_widgets_init2' );
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+function special_nav_class($classes, $item){
+     if( in_array('current-menu-item', $classes) ){
+             $classes[] = 'active ';
+     }
+     return $classes;
+}
 
 //REMOVE UNDERSCORES ENQUEUE SCRIPTS FROM FUNCTIONS.PHP AND MODIFY THIS WITH THEME_SLUG - TESTING
 
@@ -78,5 +130,31 @@ function THEMESLUG_scripts() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'THEMESLUG_scripts' );
+
+/**
+ * Run Shortcode inside contact form 7 plugin.
+ */
+add_filter( 'wpcf7_form_elements', 'do_shortcode' );
+
+add_filter('wp_nav_menu_items', 'do_shortcode');
+
+//Allow SVG upload into WP Media Uploader
+
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+    }
+add_filter('upload_mimes', 'cc_mime_types');
+
+add_filter( 'wp_check_filetype_and_ext', function($filetype_ext_data, $file, $filename, $mimes) {
+    if ( substr($filename, -4) === '.svg' ) {
+        $filetype_ext_data['ext'] = 'svg';
+        $filetype_ext_data['type'] = 'image/svg+xml';
+    }
+    return $filetype_ext_data;
+}, 100, 4 );
+
+// Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
+require_once('wp_bootstrap_navwalker.php');
 
 ?>
