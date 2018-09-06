@@ -1,8 +1,13 @@
 <?php
-// askure custom shortcodes
-add_action( 'init', 'askure_add_shortcodes' );
+/* Custom Shortcodes
+*  For giving clients more flexiblity in
+*  customizing their content. 
+*  Version 0.1
+*/
 
-function askure_add_shortcodes() {
+add_action( 'init', 'add_shortcodes' );
+
+function add_shortcodes() {
 	add_shortcode('full', 'ask_full');
 	add_shortcode('three_fourth', 'ask_three_fourth');
 	//add_shortcode('three_fourth_last', 'ask_three_fourth_last');
