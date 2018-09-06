@@ -11,11 +11,12 @@ Custom functions outside of WordPress theme file, normally found in functions.ph
 
 **shortcodes.php** - A shortcodes list/file I forked from a project I enherited. Couldn't find who originally used it, so I won't claim originality on it, but it combines work I've done to make things more user-friendly for the non-code friendly person. UNDER CONSTRUCTION AND NOT CURRENTLY CALLED IN THE constitutional-functions.php
 
-**wp_bootstrap_navwalker.php** - A Bootstrap navwalker that I've used in nearly every project that has dropdown menus. Probably eventually will be done away with once WP has better support for Bootstrap classes, or we stop using dropdowns. (Github link on file)
+**wp_bootstrap_navwalker.php** - A Bootstrap navwalker that I've used in nearly every project that has dropdown menus. Probably eventually will be done away with once WP has better support for Bootstrap classes, or we stop using dropdowns. [Github link](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
-# Creator
+## Creator
 
 **Josh Wright**
+
 -[https://www.twitter.com/_joshw](https://www.twitter.com/_joshw)
 
 ## Copyright and license
