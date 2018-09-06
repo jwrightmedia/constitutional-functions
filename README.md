@@ -13,7 +13,8 @@ Custom functions outside of WordPress theme file, normally found in functions.ph
 
 **wp_bootstrap_navwalker.php** - A Bootstrap navwalker that I've used in nearly every project that has dropdown menus. Probably eventually will be done away with once WP has better support for Bootstrap classes, or we stop using dropdowns. (Github link on file)
 
-#Creator
+# Creator
+
 **Josh Wright**
 -[https://www.twitter.com/_joshw](https://www.twitter.com/_joshw)
 
