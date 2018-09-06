@@ -3,7 +3,7 @@
 * Plugin Name: Constitutional Functions
 * Description: Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things.
 * Author: Josh Wright
-* Version: 0.2
+* Version: 0.3
 */
 
 //Custom logo - Uses header upload
@@ -26,8 +26,6 @@ add_theme_support( 'custom-header', $defaults );
 //Replicate for additional menus
 register_nav_menus( array(
 	'primary' => __( 'Primary Menu', 'bodyslug' ),
-) );
-register_nav_menus( array(
 	'mobile' => __( 'Mobile Menu', 'bodyslug' ),
 ) );
 
@@ -107,6 +105,6 @@ function my_acf_json_save_point( $path ) {
 /**
  * Files required by the theme
  */
-//require_once(BASE_DIR . '/framework/custom_post_type.php');
+//require_once(BASE_DIR . 'custom_post_type.php');
 
 ?>
