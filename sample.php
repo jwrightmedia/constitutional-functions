@@ -19,11 +19,11 @@ add_theme_support( 'custom-header', $defaults );
 //Replicate for additional menus
 
 register_nav_menus( array(
-    'primary' => __( 'Primary Menu', 'SITE_SLUG' ),
+    'primary' => __( 'Primary Menu', 'bodyslug' ),
 ) );
 
 register_nav_menus( array(
-    'mobile' => __( 'Mobile Menu', 'SITE_SLUG' ),
+    'mobile' => __( 'Mobile Menu', 'bodyslug' ),
 ) );
 
 //Add <body> class
@@ -33,11 +33,11 @@ register_nav_menus( array(
  *
  * @uses body_class() filter
  */
-function textdomain_body_classes( $classes ) {
+function bodyslug_body_classes( $classes ) {
     $classes[] = 'cbp-spmenu-push';
     return $classes;
 }
-add_filter( 'body_class', 'textdomain_body_classes' );
+add_filter( 'body_class', 'bodyslug_body_classes' );
 
 // Replaces the excerpt "more" text by a link - for use if you want to change the wording
 
@@ -83,7 +83,7 @@ if (class_exists('MultiPostThumbnails')) {
 
 //Replicate for additional widget areas
 
-function lkcm4k_widgets_init2() {
+function bodyslug_widgets_init2() {
     register_sidebar( array(
         'name'          => __( 'Home - 1 - About' ),
         'id'            => 'home-1',
@@ -94,7 +94,7 @@ function lkcm4k_widgets_init2() {
         'after_title'   => '</h1>',
     ) );
 }
-add_action( 'widgets_init', 'lkcm4k_widgets_init2' );
+add_action( 'widgets_init', 'bodyslug_widgets_init2' );
 
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 function special_nav_class($classes, $item){
@@ -109,20 +109,20 @@ function special_nav_class($classes, $item){
 /**
  * Enqueue scripts and styles.
  */
-function THEMESLUG_scripts() {
-    wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css');
+function bodyslug_scripts() {
+    wp_enqueue_style('bodyslug-bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css');
 
-    wp_enqueue_style( 'THEMESLUG-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'bodyslug-style', get_stylesheet_uri() );
 
-    wp_enqueue_script( 'THEMESLUG-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    wp_enqueue_script( 'bodyslug-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-    wp_enqueue_script( 'THEMESLUG-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+    wp_enqueue_script( 'bodyslug-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
 }
-add_action( 'wp_enqueue_scripts', 'THEMESLUG_scripts' );
+add_action( 'wp_enqueue_scripts', 'bodyslug_scripts' );
 
 /**
  * Run Shortcode inside contact form 7 plugin.

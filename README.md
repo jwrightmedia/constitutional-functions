@@ -21,4 +21,4 @@ Custom functions outside of WordPress theme file, normally found in functions.ph
 
 ## Copyright and license
 
-Code and documentation copyright 2014-2018 Josh Wright and jwrightmedia, LLC. Used on projects via the copyright owner's permission.
+Code and documentation copyright 2014-2019 Josh Wright and jwrightmedia, LLC. Used on projects via the copyright owner's permission.

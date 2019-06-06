@@ -3,7 +3,7 @@
 * Plugin Name: Constitutional Functions
 * Description: Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things.
 * Author: Josh Wright
-* Version: 0.3
+* Version: 0.4
 */
 
 //Custom logo - Uses header upload
@@ -58,14 +58,14 @@ add_action( 'widgets_init', 'bodyslug_widgets_init' );
  * Enqueue scripts and styles.
  */
 function bodyslug_scripts() {
-
+	$freshVersion = date("ymd-Gis");
 	wp_enqueue_style( 'bodyslug-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'bodyslug-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	// Enqueue Bootstrap scripts and styles
-	wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style('bodyslug-bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css');
 	wp_enqueue_style( 'bodyslug-font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css' );
-	wp_enqueue_style( 'bodyslug-custom-style', get_template_directory_uri() . '/bodyslug.css', [ 'bodyslug-style', 'bodyslug-font-awesome' ] );
+	wp_enqueue_style( 'bodyslug-custom-style', get_template_directory_uri() . '/bodyslug.css', [ 'bodyslug-style', 'bodyslug-font-awesome' ], $freshVersion, false );
 
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -89,7 +89,7 @@ define( 'BASE_URL', get_template_directory_uri() . '/' );
 define( 'BASE_DIR', get_template_directory() . '/' );
 
 // Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
-require_once('wp_bootstrap_navwalker.php');
+//require_once('wp_bootstrap_navwalker.php');
 
 /* Save that JSON Locally */
 
