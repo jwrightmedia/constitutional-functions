@@ -1,8 +1,9 @@
 <?php
-
-/* ---------------------------------------------------------------------- */
-/*	POSTTYPENAME
-/* ---------------------------------------------------------------------- */
+/* Custom Post Type
+*  Separate file for adding custom post types to your theme.
+*  -Includes custom taxonomy for category and tag
+*  Version 1.0
+*/
 
 // Register Custom Post Type: 'POSTTYPENAME'
 function register_cpt() {

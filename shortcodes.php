@@ -1,8 +1,8 @@
 <?php
 /* Custom Shortcodes
 *  For giving clients more flexiblity in
-*  customizing their content. 
-*  Version 0.1
+*  customizing their content. Currently uses Bootstrap 3.
+*  Version 0.2
 */
 
 add_action( 'init', 'add_shortcodes' );
@@ -10,30 +10,13 @@ add_action( 'init', 'add_shortcodes' );
 function add_shortcodes() {
 	add_shortcode('full', 'ask_full');
 	add_shortcode('three_fourth', 'ask_three_fourth');
-	//add_shortcode('three_fourth_last', 'ask_three_fourth_last');
 	add_shortcode('half', 'ask_half');
-	//add_shortcode('half_last', 'ask_half_last');
 	add_shortcode('three_eighth', 'ask_three_eighth');
-	//add_shortcode('three_eighth_last', 'ask_three_eighth_last');
 	add_shortcode('one_third', 'ask_one_third');
-	//add_shortcode('one_third_last', 'ask_one_third_last');
 	add_shortcode('one_fourth', 'ask_one_fourth');
-	//add_shortcode('one_fourth_last', 'ask_one_fourth_last');
 	add_shortcode('one_fifth', 'ask_one_fifth');
-	//add_shortcode('one_fifth_last', 'ask_one_fifth_last');
 	add_shortcode('two_third', 'ask_two_third');
-	//add_shortcode('two_third_last', 'ask_two_third_last');
-	//add_shortcode('query', 'ask_post_query');
-	//add_shortcode('event', 'ask_events');
-	//add_shortcode('quote', 'ask_quote');
-	//add_shortcode('social_links', 'ask_social_links');
-	//add_shortcode('heading', 'ask_heading');
-	//add_shortcode('image', 'ask_image');
-	//add_shortcode('embedvideo', 'ask_video');
 	add_shortcode('subscribe', 'ask_subscribe');
-	//add_shortcode('press_contact', 'ask_press_contact');
-	//remove_shortcode('gallery');
-	//add_shortcode('gallery', 'ask_gallery_shortcode');
 }
 
 function clean($pattern, $text){
@@ -120,5 +103,3 @@ function ask_subscribe($atts, $content = null) {
 
 	return $out;
 }
-
-?>

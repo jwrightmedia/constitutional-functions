@@ -3,8 +3,17 @@
 * Plugin Name: Constitutional Functions
 * Description: Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things.
 * Author: Josh Wright
-* Version: 0.4
+* Version: 0.5
 */
+
+//REMOVE UNDERSCORES ENQUEUE SCRIPTS FROM FUNCTIONS.PHP AND MODIFY THIS WITH BODYSLUG
+
+/**
+ * Define Constants
+ */
+
+define( 'BASE_URL', get_template_directory_uri() . '/' );
+define( 'BASE_DIR', get_template_directory() . '/' );
 
 //Custom logo - Uses header upload
 $defaults = array(
@@ -53,7 +62,6 @@ function bodyslug_widgets_init() {
 }
 add_action( 'widgets_init', 'bodyslug_widgets_init' );
 
-//REMOVE UNDERSCORES ENQUEUE SCRIPTS FROM FUNCTIONS.PHP AND MODIFY THIS WITH THEME_SLUG - TESTING
 /**
  * Enqueue scripts and styles.
  */
@@ -75,21 +83,11 @@ function bodyslug_scripts() {
 add_action( 'wp_enqueue_scripts', 'bodyslug_scripts' );
 
 function footer_script() {
+	$freshVersion = date("ymd-Gis");
 	wp_enqueue_script( 'bodyslug-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', [ 'jquery' ], '3.4.0', true );
-	wp_enqueue_script( 'bodyslug-script', get_template_directory_uri() . '/js/script.js', [ 'jquery' ], '18062018', true );
+	wp_enqueue_script( 'bodyslug-script', get_template_directory_uri() . '/js/script.js', [ 'jquery' ], $freshVersion, true );
 }
 add_action( 'wp_footer', 'footer_script' );
-	
-
-/**
- * Define Constants
- */
-
-define( 'BASE_URL', get_template_directory_uri() . '/' );
-define( 'BASE_DIR', get_template_directory() . '/' );
-
-// Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
-//require_once('wp_bootstrap_navwalker.php');
 
 /* Save that JSON Locally */
 
@@ -106,5 +104,7 @@ function my_acf_json_save_point( $path ) {
  * Files required by the theme
  */
 //require_once(BASE_DIR . 'custom_post_type.php');
+// Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
+//require_once('wp_bootstrap_navwalker.php');
 
 ?>

@@ -1,17 +1,17 @@
 # constitutional-functions
 ---
 
-Custom functions outside of WordPress theme file, normally found in functions.php. This method of putting functions ensures that if you switch themes, like you might during troubleshooting a problem, you won't lose widgets, custom post types, and other data. This is to serve as a base modification for custom theming.
+Custom functions outside of WordPress theme file, normally found in functions.php. This method of putting functions ensures that if you switch themes, something you might do while troubleshooting a problem, you won't lose widgets, custom post types, and other data. This is to serve as a base modification for custom theming.
 
-**custom_post_type.php** - This adds custom post types and taxonomy to your theme. Include within constitutional-functions.php is commented out and the custom_post_type.php file must be filled out with name of CPT and taxonomies as well as the body slug before you uncomment.
+**custom_post_type.php** - This adds custom post types and taxonomy to your theme. The include, found on constitutional-functions.php, is commented out and the custom_post_type.php file must be filled out with name of CPT and taxonomies as well as the body slug before you uncomment the include.
 
-**sample.php** - this has all functions I've used up to now. Do NOT remove sample from the file name and use. It is just the dumping ground. 
+**sample.php** - This has all functions I've used up to now. Do NOT remove sample from the file name and use. It is just the dumping ground and I do not always use every function found here. Keep things lean and mean by only using what you need. 
 
-**constitutional-functions.php** - Modify this for use. Copy functions from the sample file for use here. Includes some bare minimums that I use on every project.
+**constitutional-functions.php** - Modify this for use. This is the default functions which are used with your theme. Copy functions from the sample file for use here when you find something not needed. 
 
-**shortcodes.php** - A shortcodes list/file I forked from a project I enherited. Couldn't find who originally used it, so I won't claim originality on it, but it combines work I've done to make things more user-friendly for the non-code friendly person. UNDER CONSTRUCTION AND NOT CURRENTLY CALLED IN THE constitutional-functions.php
+**shortcodes.php** - A shortcodes list/file I forked from a project I enherited. Couldn't find who originally used it, so I won't claim originality on it, but it combines work I've done to make things more user-friendly for the non-code friendly person. Still a work in progress not currently called in the constitutional-functions.php file. Advanced Custom Fields has largely made this file obsolete and I may phase it out eventually.
 
-**wp_bootstrap_navwalker.php** - A Bootstrap navwalker that I've used in nearly every project that has dropdown menus. Probably eventually will be done away with once WP has better support for Bootstrap classes, or we stop using dropdowns. [Github link](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
+**wp_bootstrap_navwalker.php** - A Bootstrap navwalker that I've used in nearly every project that has dropdown menus. Probably eventually will be done away with once WP has better support for Bootstrap classes, or we stop using dropdowns. Not updated for Bootstrap 4. [Github link](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
 ## Creator
 

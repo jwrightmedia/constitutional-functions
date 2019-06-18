@@ -1,4 +1,5 @@
 <?php
+
 //Custom logo - Uses header upload
 $defaults = array(
     'default-image'          => '',
@@ -16,23 +17,7 @@ $defaults = array(
     );
 add_theme_support( 'custom-header', $defaults );
 
-//Replicate for additional menus
-
-register_nav_menus( array(
-    'primary' => __( 'Primary Menu', 'bodyslug' ),
-) );
-
-register_nav_menus( array(
-    'mobile' => __( 'Mobile Menu', 'bodyslug' ),
-) );
-
-//Add <body> class
-
-/**
- * Adds classes to the array of body classes.
- *
- * @uses body_class() filter
- */
+//Add to <body> class
 function bodyslug_body_classes( $classes ) {
     $classes[] = 'cbp-spmenu-push';
     return $classes;
@@ -40,7 +25,6 @@ function bodyslug_body_classes( $classes ) {
 add_filter( 'body_class', 'bodyslug_body_classes' );
 
 // Replaces the excerpt "more" text by a link - for use if you want to change the wording
-
 function new_excerpt_more($more) {
        global $post;
     return '... <a class="moretag" href="'. get_permalink($post->ID) . '"> More</a>';
@@ -82,7 +66,6 @@ if (class_exists('MultiPostThumbnails')) {
 }
 
 //Replicate for additional widget areas
-
 function bodyslug_widgets_init2() {
     register_sidebar( array(
         'name'          => __( 'Home - 1 - About' ),
@@ -104,31 +87,10 @@ function special_nav_class($classes, $item){
      return $classes;
 }
 
-//REMOVE UNDERSCORES ENQUEUE SCRIPTS FROM FUNCTIONS.PHP AND MODIFY THIS WITH THEME_SLUG - TESTING
-
-/**
- * Enqueue scripts and styles.
- */
-function bodyslug_scripts() {
-    wp_enqueue_style('bodyslug-bootstrap.min', get_template_directory_uri() . '/css/bootstrap.min.css');
-
-    wp_enqueue_style( 'bodyslug-style', get_stylesheet_uri() );
-
-    wp_enqueue_script( 'bodyslug-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-    wp_enqueue_script( 'bodyslug-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
-    }
-}
-add_action( 'wp_enqueue_scripts', 'bodyslug_scripts' );
-
 /**
  * Run Shortcode inside contact form 7 plugin.
  */
 add_filter( 'wpcf7_form_elements', 'do_shortcode' );
-
 add_filter('wp_nav_menu_items', 'do_shortcode');
 
 //Allow SVG upload into WP Media Uploader
