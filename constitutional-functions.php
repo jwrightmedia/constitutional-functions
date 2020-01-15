@@ -66,6 +66,10 @@ add_action( 'widgets_init', 'bodyslug_widgets_init' );
  * Enqueue scripts and styles.
  */
 function bodyslug_scripts() {
+	//This moves jQuery to the footer. Remove Lines 69, 70, 71 to leave it loading in it's default location.
+	wp_deregister_script( 'jquery' );
+    wp_register_script( 'jquery', includes_url( '/js/jquery/jquery.js' ), false, NULL, true ); 
+    wp_enqueue_script( 'jquery' ); 
 	$freshVersion = date("ymd-Gis");
 	wp_enqueue_style( 'bodyslug-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'bodyslug-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
