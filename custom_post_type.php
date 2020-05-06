@@ -1,11 +1,13 @@
 <?php
 /* Custom Post Type
 *  Separate file for adding custom post types to your theme.
-*  -Includes custom taxonomy for category and tag
-*  Version 1.0
+*  -Includes a single custom taxonomy example for category and tag
+*  -Comment out "taxonomies" line 55 if not using any taxonomies.
+*  Version 1.1
 */
 
 // Register Custom Post Type: 'POSTTYPENAME'
+
 function register_cpt() {
 
 	/**
@@ -50,13 +52,15 @@ function register_cpt() {
 		"menu_position" => 20,
 		"menu_icon" => "dashicons-id-alt",
 		"supports" => array( "title", "editor", "thumbnail", "excerpt", "custom-fields", "page-attributes" ),
-		"taxonomies" => array( "CATEGORY", "TAGS" ), //REPLACE WITH TAXONOMY NAMES
+		"taxonomies" => array( "CATEGORYNAME", "TAGNAME" ), //REPLACE WITH TAXONOMY NAMES
 	);
 
 	register_post_type( "POSTTYPENAME", $args ); //SINGULAR
 }
 
 add_action( 'init', 'register_cpt' );
+
+// Register CATEGORYNAME to 'POSTTYPENAME' - remove if not using category
 
 function register_cpt_category1() {
 
@@ -91,38 +95,7 @@ function register_cpt_category1() {
 
 add_action( 'init', 'register_cpt_category1' );
 
-function register_cpt_category2() {
-
-	/**
-	 * Taxonomy: CATEGORYNAME
-	 */
-
-	$labels = array(
-		"name" => __( "CATEGORYNAME", "BODYSLUG" ),
-		"singular_name" => __( "CATEGORYNAME", "BODYSLUG" ),
-	);
-
-	$args = array(
-		"label" => __( "CATEGORYNAME", "BODYSLUG" ),
-		"labels" => $labels,
-		"public" => true,
-		"hierarchical" => false,
-		"label" => "CATEGORYNAME",
-		"show_ui" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"query_var" => true,
-		"rewrite" => array( 'slug' => 'CATEGORYNAME', 'with_front' => true, ),
-		"show_admin_column" => false,
-		"show_in_rest" => true,
-		"rest_base" => "CATEGORYNAME",
-		'rest_controller_class' => 'WP_REST_Terms_Controller',
-		"show_in_quick_edit" => false,
-	);
-	register_taxonomy( "CATEGORYNAME", array( "POSTTYPENAME" ), $args );
-}
-
-add_action( 'init', 'register_cpt_category2' );
+// Register TAGNAME to 'POSTTYPENAME' - remove if not using tag
 
 function register_cpt_tag1() {
 
@@ -156,36 +129,3 @@ function register_cpt_tag1() {
 }
 
 add_action( 'init', 'register_cpt_tag1' );
-
-function register_cpt_category3() {
-
-	/**
-	 * Taxonomy: CATEGORYNAME
-	 */
-
-	$labels = array(
-		"name" => __( "CATEGORYNAME", "BODYSLUG" ),
-		"singular_name" => __( "CATEGORYNAME", "BODYSLUG" ),
-	);
-
-	$args = array(
-		"label" => __( "CATEGORYNAME", "BODYSLUG" ),
-		"labels" => $labels,
-		"public" => true,
-		"hierarchical" => false,
-		"label" => "CATEGORYNAME",
-		"show_ui" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"query_var" => true,
-		"rewrite" => array( 'slug' => 'CATEGORYNAME', 'with_front' => true, ),
-		"show_admin_column" => false,
-		"show_in_rest" => true,
-		"rest_base" => "CATEGORYNAME",
-		'rest_controller_class' => 'WP_REST_Terms_Controller',
-		"show_in_quick_edit" => false,
-	);
-	register_taxonomy( "CATEGORYNAME", array( "POSTTYPENAME" ), $args );
-}
-
-add_action( 'init', 'register_cpt_category3' );
