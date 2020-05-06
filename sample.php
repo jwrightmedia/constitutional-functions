@@ -84,6 +84,10 @@ function BODYSLUG_scripts() {
     if ( is_page( 'gallery' ) ) {
         //If you need to load scripts on a specific page
     }
+    /*} else {
+        // if you want to show on other pages is not used. 
+        // Remove line 86 closing bracket for this info if using.
+    }*/
 }
 add_action( 'wp_enqueue_scripts', 'BODYSLUG_scripts' );
 
