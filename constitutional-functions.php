@@ -1,12 +1,14 @@
 <?php
 /**
 * Plugin Name: Constitutional Functions
-* Description: Custom functions outside of functions.php. This ensures that if you switch themes, you won't lose widgets and other custom things.
+* Description: This almost entirely replaces the Underscores functions.php, leaving only the basics in that file. 
+* This ensures that if you switch themes, you won't lose widgets and other custom code, or if you build out a new theme for a 
+* site, you can duplicate this file and keep it as a back up for the new, replacement file.
 * Author: Josh Wright
-* Version: 0.6
+* Version: 0.7
 */
 
-// REMOVE UNDERSCORES ENQUEUE SCRIPTS FROM FUNCTIONS.PHP AND MODIFY THIS WITH BODYSLUG
+// USE FIND AND REPLACE TO ADD THE UNDERSCORES GENERATED BODY SLUG TO THE BELOW FUNCTIONS: BODYSLUG
 
 /**
  * Define Constants
@@ -109,10 +111,14 @@ function my_acf_json_save_point( $path ) {
  */
 
 //require_once(BASE_DIR . 'custom_post_type.php');
+
 // Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
 //require_once('wp_bootstrap_navwalker.php');
 
-//Clean up wp_head
+
+/**
+ * Clean up wp_head
+ */
 
 //Remove JQuery migrate
 
@@ -126,6 +132,8 @@ function remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 
+//Disable emojis
+
 function disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -138,20 +146,6 @@ function disable_emojis() {
 	add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
 }
 add_action( 'init', 'disable_emojis' );
-
-/**
-* Filter function used to remove the tinymce emoji plugin.
-*
- * @param    array  $plugins 
- * @return   array  Difference betwen the two arrays
-*/
-
-function disable_emojis_tinymce( $plugins ) {
-	if ( is_array( $plugins ) ) {
-	    return array_diff( $plugins, array( 'wpemoji' ) );
-	}
-	return array();
-}
 
 /**
 * Remove emoji CDN hostname from DNS prefetching hints.
@@ -172,6 +166,20 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 	    }
 	}
 	return $urls;
+}
+
+/**
+* Filter function used to remove the tinymce emoji plugin.
+*
+ * @param    array  $plugins 
+ * @return   array  Difference betwen the two arrays
+*/
+
+function disable_emojis_tinymce( $plugins ) {
+	if ( is_array( $plugins ) ) {
+	    return array_diff( $plugins, array( 'wpemoji' ) );
+	}
+	return array();
 }
 
 remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds

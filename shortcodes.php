@@ -2,7 +2,7 @@
 /* Custom Shortcodes For Layout
 *  For giving clients more flexiblity in customizing
 *  their content layout. Currently uses Bootstrap 3.
-*  Incomplete.
+*  Incomplete and slated for removal.
 *
 *  Version 0.2
 */

@@ -1,8 +1,6 @@
 <?php /*
-*
 * 
 * Sample file for default usage + additional code snippets 
-*
 *
 */
 
@@ -86,7 +84,6 @@ function BODYSLUG_scripts() {
     }
     /*} else {
         // if you want to show on other pages is not used. 
-        // Remove line 86 closing bracket for this info if using.
     }*/
 }
 add_action( 'wp_enqueue_scripts', 'BODYSLUG_scripts' );
@@ -203,10 +200,12 @@ require_once(BASE_DIR . 'custom_post_type.php');
 // Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
 require_once('wp_bootstrap_navwalker.php');
 
-////////
-// Additional non-default used script examples.
-////////
-?>
+/**
+ * Additional non-default used script examples.
+ */
+
+?> <!--Note extra closing ?> here -->
+
 <?php 
 function login_page_style() { 
 ?> 

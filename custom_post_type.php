@@ -2,7 +2,8 @@
 /* Custom Post Type
 *  Separate file for adding custom post types to your theme.
 *  -Includes a single custom taxonomy example for category and tag
-*  -Comment out "taxonomies" line 55 if not using any taxonomies.
+*  -Comment out "taxonomies" line 56 if not using any taxonomies.
+*  -Use Find and Replace to add POSTTYPENAME and BODYSLUG across the file.
 *  Version 1.1
 */
 
