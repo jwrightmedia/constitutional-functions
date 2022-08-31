@@ -10,14 +10,11 @@
 
 // USE FIND AND REPLACE TO ADD THE UNDERSCORES GENERATED BODY SLUG TO THE BELOW FUNCTIONS: BODYSLUG
 
-/**
- * Define Constants
- */
-
+//Define Constants
 define( 'BASE_URL', get_template_directory_uri() . '/' );
 define( 'BASE_DIR', get_template_directory() . '/' );
 
-//Custom logo - Uses header upload
+//Custom logo - Uses header upload - depreciating
 $defaults = array(
 	'default-image'          => '',
 	'random-default'         => false,
@@ -68,6 +65,7 @@ add_action( 'widgets_init', 'BODYSLUG_widgets_init' );
  * Enqueue scripts and styles.
  */
 
+//Header Scripts
 function BODYSLUG_scripts() {
 	//This moves jQuery to the footer. Remove Lines 71-73 to leave it loading in it's default location.
 	wp_deregister_script( 'jquery' );
@@ -88,6 +86,7 @@ function BODYSLUG_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'BODYSLUG_scripts' );
 
+//Footer Scripts
 function BODYSLUG_footer_script() {
 	$freshVersion = date("ymd-Gis");
 	wp_enqueue_script( 'BODYSLUG-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', [ 'jquery' ], '3.4.0', true );
@@ -95,8 +94,7 @@ function BODYSLUG_footer_script() {
 }
 add_action( 'wp_footer', 'BODYSLUG_footer_script' );
 
-/* Save that JSON Locally */
-
+// Save JSON Locally
 add_filter('acf/settings/save_json', 'my_acf_json_save_point');
 
 function my_acf_json_save_point( $path ) {
@@ -110,9 +108,10 @@ function my_acf_json_save_point( $path ) {
  * Files required by the theme
  */
 
+//Register Custom Post Types
 //require_once(BASE_DIR . 'custom_post_type.php');
 
-// Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
+//Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
 //require_once('wp_bootstrap_navwalker.php');
 
 
@@ -120,8 +119,32 @@ function my_acf_json_save_point( $path ) {
  * Clean up wp_head
  */
 
-//Remove JQuery migrate
+remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
+remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
+remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
+remove_action( 'wp_head', 'index_rel_link' ); // index link
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
+remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
+remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
+remove_action( 'wp_head', 'rest_output_link_wp_head');
+remove_action( 'wp_head', 'wp_oembed_add_discovery_links');
+remove_action( 'template_redirect', 'rest_output_link_header', 11 );
 
+//Remove WP Embed
+function my_deregister_scripts(){
+	wp_deregister_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'my_deregister_scripts' );
+
+//Remove WP Block Library - Only remove if you are not using the WP Block Library (Formerly known as Gutenburg)
+function remove_block_css(){
+	wp_dequeue_style( 'wp-block-library' );
+}
+add_action( 'wp_enqueue_scripts', 'remove_block_css', 100 );
+
+//Remove JQuery migrate
 function remove_jquery_migrate( $scripts ) {
 	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
 	$script = $scripts->registered['jquery'];
@@ -133,7 +156,6 @@ function remove_jquery_migrate( $scripts ) {
 add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 
 //Disable emojis
-
 function disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -154,7 +176,6 @@ add_action( 'init', 'disable_emojis' );
 * @param  string $relation_type The relation type the URLs are printed for.
 * @return array                 Difference betwen the two arrays.
 */
-
 function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 	if ( 'dns-prefetch' == $relation_type ) {
 	    // Strip out any URLs referencing the WordPress.org emoji location
@@ -174,35 +195,11 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
  * @param    array  $plugins 
  * @return   array  Difference betwen the two arrays
 */
-
 function disable_emojis_tinymce( $plugins ) {
 	if ( is_array( $plugins ) ) {
 	    return array_diff( $plugins, array( 'wpemoji' ) );
 	}
 	return array();
 }
-
-remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
-remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
-remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
-remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-remove_action( 'wp_head', 'index_rel_link' ); // index link
-remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
-remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
-remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
-remove_action( 'wp_head', 'rest_output_link_wp_head');
-remove_action( 'wp_head', 'wp_oembed_add_discovery_links');
-remove_action( 'template_redirect', 'rest_output_link_header', 11 );
-
-function my_deregister_scripts(){
-	wp_deregister_script( 'wp-embed' );
-}
-add_action( 'wp_footer', 'my_deregister_scripts' );
-
-function remove_block_css(){
-	wp_dequeue_style( 'wp-block-library' );
-}
-add_action( 'wp_enqueue_scripts', 'remove_block_css', 100 );
 
 ?>
