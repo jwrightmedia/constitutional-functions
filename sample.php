@@ -106,6 +106,22 @@ function my_acf_json_save_point( $path ) {
     return $path;
 }
 
+//Add Custom Colors to ACF Color Picker (Shout out to Kristin Falkner)
+
+function jwm_acf_input_admin_footer() { ?>
+<script type="text/javascript">
+    (function($) {
+        acf.add_filter('color_picker_args', function( args, $field ){
+        // add the hexadecimal codes here for the colors you want to appear as swatches
+            args.palettes = ['#3C4D85', '#FE5000', '#FFC700', '#EB9514', '#FFB800', '#FAF6E8', '#EBF5F7', '#757678']
+        // return colors
+            return args;
+        });
+    })(jQuery);
+</script>
+<?php }
+add_action('acf/input/admin_footer', 'jwm_acf_input_admin_footer');
+
 //Clean up wp_head
 
 //Remove JQuery migrate
