@@ -202,4 +202,10 @@ function disable_emojis_tinymce( $plugins ) {
 	return array();
 }
 
+/* Clean up footer */
+
+// Note - this may be required for Gutenberg, remove if using.
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+
 ?>
