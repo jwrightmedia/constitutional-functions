@@ -216,9 +216,11 @@ require_once(BASE_DIR . 'custom_post_type.php');
 // Register Custom Navigation Walker - https://github.com/wp-bootstrap/wp-bootstrap-navwalker
 require_once('wp_bootstrap_navwalker.php');
 
+//////////////////////////////////////////////////
 /**
  * Additional non-default used script examples.
  */
+//////////////////////////////////////////////////
 
 ?> <!--Note extra closing ?> here -->
 
