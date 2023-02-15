@@ -741,4 +741,15 @@ function tecs_add_span_around_time( $output, $atts, $post ) {
 }
 add_filter( 'ecs_event_list_details', 'tecs_add_span_around_time', 10, 3 );
 
+//Remove image link when inserting an image into the wysiwyg editor
+
+function wpb_imagelink_setup() {
+    $image_set = get_option( 'image_default_link_type' );
+     
+    if ($image_set !== 'none') {
+        update_option('image_default_link_type', 'none');
+    }
+}
+add_action('admin_init', 'wpb_imagelink_setup', 10);
+
 ?>
