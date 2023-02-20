@@ -752,4 +752,17 @@ function wpb_imagelink_setup() {
 }
 add_action('admin_init', 'wpb_imagelink_setup', 10);
 
+// Below is being tested on a project, don't use in production site, yet.
+
+// Use the filter 'body_class'
+add_filter( 'body_class', 'parent_id_body_class' );
+function parent_id_body_class( $classes ) {
+    if ( is_singular() ) {
+        // add comprehensive text followed by parent id number to the $classes array
+        $classes[] = 'parent-id-' . wp_get_post_parent_id( $post_ID );
+        // return the $classes array
+        return $classes;
+    }
+} 
+
 ?>

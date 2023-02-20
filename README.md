@@ -20,6 +20,7 @@ Custom functions outside of WordPress theme file, normally found in functions.ph
 **Josh Wright**
 
 -[Mastodon](https://subculture.chat/@jwright)
+
 -[Twitter](https://www.twitter.com/_joshw)
 
 ## Copyright and license
