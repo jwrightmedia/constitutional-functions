@@ -13,7 +13,7 @@ Custom functions outside of WordPress theme file, normally found in functions.ph
 
 **shortcodes.php** - A shortcodes list/file I forked from a project I enherited. I couldn't find who originally used it, so I won't claim originality on it, but it combines work I've done to make layout more user-friendly for the non-code friendly person. This is depreciated and not called in the constitutional-functions.php file. Advanced Custom Fields and moving away from Bootstrap in my projects has largely made this file obsolete in my workflow. */File no longer updated./*
 
-**wp_bootstrap_navwalker.php** - A Bootstrap 3 navwalker that I've used in nearly every project that has dropdown navigation. /*Depreciated and only included as a back up.*/ From (wp-bootstrap-navwalker)[https://github.com/wp-bootstrap/wp-bootstrap-navwalker/tree/v3-branch]
+**wp_bootstrap_navwalker.php** - A Bootstrap 3 navwalker that I've used in nearly every project that has dropdown navigation. /*Depreciated and only included as a back up.*/ From [wp-bootstrap-navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker/tree/v3-branch)
 
 ## Creator
 
