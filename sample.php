@@ -122,6 +122,22 @@ function jwm_acf_input_admin_footer() { ?>
 <?php }
 add_action('acf/input/admin_footer', 'jwm_acf_input_admin_footer');
 
+/* Add nav-item and nav-link classes to navigation */
+
+function add_li_atts($classes, $item, $args) {
+  if($args->theme_location == 'primary') {
+    $classes[] = 'nav-item';
+  }
+  return $classes;
+}
+add_filter('nav_menu_css_class', 'add_li_atts', 1, 3);
+
+function add_link_atts($atts) {
+  $atts['class'] = "nav-link";
+  return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'add_link_atts');
+
 //Clean up wp_head
 
 //Remove JQuery migrate
