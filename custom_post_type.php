@@ -2,64 +2,10 @@
 /* Custom Post Type
 *  Separate file for adding custom post types to your theme.
 *  -Includes a single custom taxonomy example for category and tag
-*  -Comment out "taxonomies" line 56 if not using any taxonomies.
+*  -Comment out "taxonomies" line 127 if not using any taxonomies.
 *  -Use Find and Replace to add POSTTYPENAME and BODYSLUG across the file.
 *  Version 1.1
 */
-
-// Register Custom Post Type: 'POSTTYPENAME'
-
-function register_cpt() {
-
-	/**
-	 * Post Type: POSTTYPENAME
-	 */
-
-	$labels = array(
-		"name" => __( "POSTTYPENAME", "BODYSLUG" ),
-		"singular_name" => __( "POSTTYPENAME", "BODYSLUG" ),
-		"menu_name" => __( "POSTTYPENAME", "BODYSLUG" ),
-		"all_items" => __( "All POSTTYPENAME", "BODYSLUG" ),
-		"add_new" => __( "Add New", "BODYSLUG" ),
-		"add_new_item" => __( "Add New POSTTYPENAME", "BODYSLUG" ), //SINGULAR
-		"edit_item" => __( "Edit POSTTYPENAME", "BODYSLUG" ), //SINGULAR
-		"new_item" => __( "New POSTTYPENAME", "BODYSLUG" ), //SINGULAR
-		"view_item" => __( "View POSTTYPENAME Page", "BODYSLUG" ), //SINGULAR
-		"view_items" => __( "View POSTTYPENAME", "BODYSLUG" ),
-		"search_items" => __( "Search POSTTYPENAME", "BODYSLUG" ),
-		"not_found" => __( "No POSTTYPENAME Found", "BODYSLUG" ),
-		"not_found_in_trash" => __( "No POSTTYPENAME Found in Trash", "BODYSLUG" ),
-		"archives" => __( "POSTTYPENAME Archives", "BODYSLUG" ), //SINGULAR
-	);
-
-	$args = array(
-		"label" => __( "POSTTYPENAME", "BODYSLUG" ),
-		"labels" => $labels,
-		"description" => "",
-		"public" => true,
-		"publicly_queryable" => true,
-		"show_ui" => true,
-		"show_in_rest" => true,
-		"rest_base" => "",
-		"has_archive" => false,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"exclude_from_search" => false,
-		"capability_type" => "post",
-		"map_meta_cap" => true,
-		"hierarchical" => false,
-		"rewrite" => array( "slug" => "POSTTYPENAME", "with_front" => true ), //SINGULAR
-		"query_var" => true,
-		"menu_position" => 20,
-		"menu_icon" => "dashicons-id-alt",
-		"supports" => array( "title", "editor", "thumbnail", "excerpt", "custom-fields", "page-attributes" ),
-		"taxonomies" => array( "CATEGORYNAME", "TAGNAME" ), //REPLACE WITH TAXONOMY NAMES - Find and Replace should take care of these, but double-check!!
-	);
-
-	register_post_type( "POSTTYPENAME", $args ); //SINGULAR
-}
-
-add_action( 'init', 'register_cpt' );
 
 // Register CATEGORYNAME to 'POSTTYPENAME' - remove if not using category
 
@@ -130,3 +76,58 @@ function register_cpt_tag1() {
 }
 
 add_action( 'init', 'register_cpt_tag1' );
+
+
+// Register Custom Post Type: 'POSTTYPENAME'
+
+function register_cpt() {
+
+	/**
+	 * Post Type: POSTTYPENAME
+	 */
+
+	$labels = array(
+		"name" => __( "POSTTYPENAME", "BODYSLUG" ),
+		"singular_name" => __( "POSTTYPENAME", "BODYSLUG" ),
+		"menu_name" => __( "POSTTYPENAME", "BODYSLUG" ),
+		"all_items" => __( "All POSTTYPENAME", "BODYSLUG" ),
+		"add_new" => __( "Add New", "BODYSLUG" ),
+		"add_new_item" => __( "Add New POSTTYPENAME", "BODYSLUG" ), //SINGULAR
+		"edit_item" => __( "Edit POSTTYPENAME", "BODYSLUG" ), //SINGULAR
+		"new_item" => __( "New POSTTYPENAME", "BODYSLUG" ), //SINGULAR
+		"view_item" => __( "View POSTTYPENAME Page", "BODYSLUG" ), //SINGULAR
+		"view_items" => __( "View POSTTYPENAME", "BODYSLUG" ),
+		"search_items" => __( "Search POSTTYPENAME", "BODYSLUG" ),
+		"not_found" => __( "No POSTTYPENAME Found", "BODYSLUG" ),
+		"not_found_in_trash" => __( "No POSTTYPENAME Found in Trash", "BODYSLUG" ),
+		"archives" => __( "POSTTYPENAME Archives", "BODYSLUG" ), //SINGULAR
+	);
+
+	$args = array(
+		"label" => __( "POSTTYPENAME", "BODYSLUG" ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"has_archive" => false,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => array( "slug" => "POSTTYPENAME", "with_front" => true ), //SINGULAR
+		"query_var" => true,
+		"menu_position" => 20,
+		"menu_icon" => "dashicons-id-alt",
+		"supports" => array( "title", "editor", "thumbnail", "excerpt", "custom-fields", "page-attributes" ),
+		"taxonomies" => array( "CATEGORYNAME", "TAGNAME" ), //REPLACE WITH TAXONOMY NAMES - Find and Replace should take care of these, but double-check!!
+	);
+
+	register_post_type( "POSTTYPENAME", $args ); //SINGULAR
+}
+
+add_action( 'init', 'register_cpt' );
