@@ -53,7 +53,7 @@ function register_cpt() {
 		"menu_position" => 20,
 		"menu_icon" => "dashicons-id-alt",
 		"supports" => array( "title", "editor", "thumbnail", "excerpt", "custom-fields", "page-attributes" ),
-		"taxonomies" => array( "CATEGORYNAME", "TAGNAME" ), //REPLACE WITH TAXONOMY NAMES
+		"taxonomies" => array( "CATEGORYNAME", "TAGNAME" ), //REPLACE WITH TAXONOMY NAMES - Find and Replace should take care of these, but double-check!!
 	);
 
 	register_post_type( "POSTTYPENAME", $args ); //SINGULAR
