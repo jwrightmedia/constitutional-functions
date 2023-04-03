@@ -238,11 +238,8 @@ require_once('wp_bootstrap_navwalker.php');
  */
 //////////////////////////////////////////////////
 
-?> <!--Note extra closing ?> here -->
-
-<?php 
-function login_page_style() { 
-?> 
+// NOTICE CLOSING TAG
+function login_page_style() { ?> 
 <style type="text/css">
 body.login{
     background-color: #f1f1f1;
@@ -259,9 +256,8 @@ body.login div#login h1 a {
 } 
 </style>
 <?php 
-} add_action( 'login_enqueue_scripts', 'login_page_style' );?>
-
-<?php
+} add_action( 'login_enqueue_scripts', 'login_page_style' );
+// NOTICE CLOSING and OPENING TAG - WILL BREAK IF YOU DON'T ORDER THINGS CORRECTLY!
 
 // Replaces the excerpt "more" text by a link - for use if you want to change the wording
 function new_excerpt_more($more) {
