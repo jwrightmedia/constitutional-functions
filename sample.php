@@ -11,7 +11,7 @@
 define( 'BASE_URL', get_template_directory_uri() . '/' );
 define( 'BASE_DIR', get_template_directory() . '/' );
 
-//Custom logo - Uses header upload
+//Custom logo - Uses header upload - depreciating
 $defaults = array(
     'default-image'          => '',
     'random-default'         => false,
@@ -258,6 +258,26 @@ body.login div#login h1 a {
 <?php 
 } add_action( 'login_enqueue_scripts', 'login_page_style' );
 // NOTICE CLOSING and OPENING TAG - WILL BREAK IF YOU DON'T ORDER THINGS CORRECTLY!
+
+// New Login form logo mod - unused, yet
+
+// Add custom login form logo.
+add_action('login_head', function () {
+    $url = get_theme_file_uri('favicon.svg');
+    $width = 200;
+
+    $styles = [
+        sprintf('background-image: url(%s);', $url),
+        sprintf('width: %dpx;', $width),
+        'background-position: center;',
+        'background-size: contain;',
+    ];
+
+    echo sprintf(
+        '<style> .login h1 a { %s } </style>',
+        implode('', $styles)
+    );
+});
 
 // Replaces the excerpt "more" text by a link - for use if you want to change the wording
 function new_excerpt_more($more) {

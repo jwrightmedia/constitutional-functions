@@ -1,11 +1,9 @@
 <?php
 /**
 * Plugin Name: Constitutional Functions
-* Description: This almost entirely replaces the Underscores functions.php, leaving only the basics in that file. 
-* This ensures that if you switch themes, you won't lose widgets and other custom code, or if you build out a new theme for a 
-* site, you can duplicate this file and keep it as a back up for the new, replacement file.
+* Description: This almost entirely replaces functions.php, leaving only the basics in that file and is primarily meant to work in conjunction with my Shibui empty theme, based on Underscores (_s). 
 * Author: Josh Wright
-* Version: 0.7
+* Version: 0.8
 */
 
 // USE FIND AND REPLACE TO ADD THE UNDERSCORES GENERATED BODY SLUG TO THE BELOW FUNCTIONS: BODYSLUG
@@ -13,23 +11,6 @@
 //Define Constants
 define( 'BASE_URL', get_template_directory_uri() . '/' );
 define( 'BASE_DIR', get_template_directory() . '/' );
-
-//Custom logo - Uses header upload - depreciating
-$defaults = array(
-	'default-image'          => '',
-	'random-default'         => false,
-	'width'                  => 0,
-	'height'                 => 0,
-	'flex-height'            => true,
-	'flex-width'             => true,
-	'default-text-color'     => '',
-	'header-text'            => false,
-	'uploads'                => true,
-	'wp-head-callback'       => '',
-	'admin-head-callback'    => '',
-	'admin-preview-callback' => '',
-	);
-add_theme_support( 'custom-header', $defaults );
 
 //Replicate for additional menus
 register_nav_menus( array(
@@ -67,7 +48,7 @@ add_action( 'widgets_init', 'BODYSLUG_widgets_init' );
 
 //Header Scripts
 function BODYSLUG_scripts() {
-	//This moves jQuery to the footer. Remove Lines 71-73 to leave it loading in it's default location.
+	//This moves jQuery to the footer. Remove the next 3 lines to allow it to load in it's default location.
 	wp_deregister_script( 'jquery' );
     wp_register_script( 'jquery', includes_url( '/js/jquery/jquery.js' ), false, NULL, true ); 
     wp_enqueue_script( 'jquery' ); 
@@ -116,8 +97,10 @@ function my_acf_json_save_point( $path ) {
 
 
 /**
- * Clean up wp_head
+ * Clean up WordPress
  */
+
+//Clean up wp_head
 
 remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
 remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
@@ -192,8 +175,8 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 /**
 * Filter function used to remove the tinymce emoji plugin.
 *
- * @param    array  $plugins 
- * @return   array  Difference betwen the two arrays
+* @param    array  $plugins 
+* @return   array  Difference betwen the two arrays
 */
 function disable_emojis_tinymce( $plugins ) {
 	if ( is_array( $plugins ) ) {
@@ -202,7 +185,20 @@ function disable_emojis_tinymce( $plugins ) {
 	return array();
 }
 
-/* Clean up footer */
+// Remove admin dashboard widgets.
+add_action('wp_dashboard_setup', function () {
+    global $wp_meta_boxes;
+
+    unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity']); // Activity
+    // unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']); // At a Glance
+    unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_site_health']); // Site Health Status
+    unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']); // WordPress Events and News
+    unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']); // Quick Draft
+});
+
+/*
+* Clean up footer 
+*/
 
 // Note - this may be required for Gutenberg, remove if using.
 remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
