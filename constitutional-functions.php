@@ -17,6 +17,22 @@ register_nav_menus( array(
 	'primary' => __( 'Primary Menu', 'BODYSLUG' ),
 	'mobile' => __( 'Mobile Menu', 'BODYSLUG' ),
 ) );
+// Add link class in wp_nav_menu()
+function add_menu_link_class( $atts, $item, $args ) {
+	if (property_exists($args, 'link_class')) {
+	  $atts['class'] = $args->link_class;
+	}
+	return $atts;
+  }
+add_filter( 'nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
+// Add <li> class in wp_nav_menu()
+function add_menu_list_item_class($classes, $item, $args) {
+	if (property_exists($args, 'list_item_class')) {
+		$classes[] = $args->list_item_class;
+	}
+	return $classes;
+  }
+add_filter('nav_menu_css_class', 'add_menu_list_item_class', 1, 3);
 
 //Add the page slug to the <body> class
 function add_slug_body_class( $classes ) {
